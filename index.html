@@ -65,6 +65,8 @@
 				--app-safe-right: max(env(safe-area-inset-right, 0px), var(--app-telegram-content-safe-right, 0px));
 				--app-safe-bottom: max(env(safe-area-inset-bottom, 0px), var(--app-telegram-content-safe-bottom, 0px));
 				--app-safe-left: max(env(safe-area-inset-left, 0px), var(--app-telegram-content-safe-left, 0px));
+				--app-hud-top-gap: 10px;
+				--app-hud-readout-gap: 36px;
 			}
 			html,
 			body,
@@ -94,7 +96,7 @@
 			}
 			#hud .top-bars {
 				position: fixed;
-				top: var(--app-safe-top);
+				top: calc(var(--app-safe-top) + var(--app-hud-top-gap));
 				left: var(--app-safe-left);
 				right: var(--app-safe-right);
 				display: grid;
@@ -127,7 +129,7 @@
 			}
 			#hud .hud-readout {
 				position: fixed;
-				top: calc(var(--app-safe-top) + 22px);
+				top: calc(var(--app-safe-top) + var(--app-hud-readout-gap));
 				left: calc(var(--app-safe-left) + 12px);
 				right: calc(var(--app-safe-right) + 12px);
 				display: flex;
@@ -171,11 +173,15 @@
 				text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
 			}
 			@media (max-width: 640px) {
+				:root {
+					--app-hud-top-gap: 12px;
+					--app-hud-readout-gap: 38px;
+				}
 				#hud .top-bars {
 					height: 12px;
 				}
 				#hud .hud-readout {
-					top: calc(var(--app-safe-top) + 18px);
+					top: calc(var(--app-safe-top) + var(--app-hud-readout-gap));
 					left: calc(var(--app-safe-left) + 10px);
 					right: calc(var(--app-safe-right) + 10px);
 					font-size: 12px;
